@@ -2,8 +2,6 @@ namespace API.DTOs;
 
 public class UserDto
 {
-    internal string Username;
-    internal string Token;
-
-    public string MyProperty { get; set; }
+    public string Username { get; set; }
+    public string Token { get; set; }
 }

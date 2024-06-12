@@ -63,11 +63,13 @@ public class AccountController : BaseApiController
         } 
 
         
-        return new UserDto
+        var userDto = new UserDto
         {
             Username = user.UserName,
             Token  = _tokenService.CreateToken(user)
         };
+
+        return userDto;
     }
     private async Task<bool> UserExists(string username)
     {

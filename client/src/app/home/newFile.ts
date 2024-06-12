@@ -1,0 +1,5 @@
+{
+
+  this.registerMode = !this.registerMode;
+
+}
