@@ -15,6 +15,7 @@ public class TokenService : ITokenService
     public TokenService(IConfiguration config)
     {
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        //if(_key.Length < 64) throw new Exception("TokenKey needs to be above 64 characters");
     }
     public string CreateToken(AppUser user)
     {
