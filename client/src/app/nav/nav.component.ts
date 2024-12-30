@@ -23,16 +23,19 @@ ngOnInit(): void{
  
 
 
-login() {
-  this.accountService.login(this.model).subscribe({
-    next: response => {
-      console.log(response); 
-    },
-    error: error => console.log(error)
-  })
-}
-logout() {
-  this.accountService.logout();  
-}
+login() 
+  {
+    this.accountService.login(this.model).subscribe({
+      next: response => {
+        console.log(response); 
+      },
+      error: error => console.log(error)
+    })
+  }
+
+logout() 
+  {
+    this.accountService.logout();  
+  }
 
 }

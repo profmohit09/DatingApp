@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import path from 'path';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 
