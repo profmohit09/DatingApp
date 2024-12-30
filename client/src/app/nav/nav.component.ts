@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../_services/account.service';
-import { response } from 'express';
-import { error } from 'console';
 import { Observable, of } from 'rxjs';
 import { User } from '../_models/user';
 
@@ -25,16 +23,19 @@ ngOnInit(): void{
  
 
 
-login() {
-  this.accountService.login(this.model).subscribe({
-    next: response => {
-      console.log(response); 
-    },
-    error: error => console.log(error)
-  })
-}
-logout() {
-  this.accountService.logout();  
-}
+login() 
+  {
+    this.accountService.login(this.model).subscribe({
+      next: response => {
+        console.log(response); 
+      },
+      error: error => console.log(error)
+    })
+  }
+
+logout() 
+  {
+    this.accountService.logout();  
+  }
 
 }
