@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, } from '@angular/core';
+import { Component, input, Input, OnInit, Output, output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -7,7 +7,8 @@ import { AccountService } from '../_services/account.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent implements OnInit { 
-  @Input() usersFromHomeComponent: any;
+  usersFromHomeComponent = input.required<any>();
+  cancelRegister = output<boolean>();
   model: any = {}
 
 
@@ -29,7 +30,7 @@ constructor(private accountService: AccountService) {}
   } 
 
   cancel() {
-    console.log(this.cancel);
+    this.cancelRegister.emit(false);
   }
 
 }
