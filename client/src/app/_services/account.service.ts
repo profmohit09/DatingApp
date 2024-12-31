@@ -43,5 +43,7 @@ export class AccountService {
   }
   logout(){
     localStorage.removeItem('user');
+    this.currentUserSource.next(null);
+    console.log("Successfully Logged Out");
   }
 }

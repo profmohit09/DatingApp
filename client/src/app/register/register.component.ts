@@ -6,8 +6,7 @@ import { AccountService } from '../_services/account.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit { 
-  usersFromHomeComponent = input.required<any>();
+export class RegisterComponent implements OnInit {
   cancelRegister = output<boolean>();
   model: any = {}
 
