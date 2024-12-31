@@ -1,5 +1,6 @@
-import { Component, input, Input, OnInit, Output, output } from '@angular/core';
+import { Component, OnInit, output } from '@angular/core';
 import { AccountService } from '../_services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   model: any = {}
 
 
-constructor(private accountService: AccountService) {}
+constructor(private accountService: AccountService, private toaster: ToastrService) {}
 
   ngOnInit(): void {
       
@@ -24,7 +25,7 @@ constructor(private accountService: AccountService) {}
         console.log(response);
         this.cancel();
       },
-      error: error=> console.log(error)
+      error: error=> this.toaster.error('Please Fill All Data')
     })
   } 
 

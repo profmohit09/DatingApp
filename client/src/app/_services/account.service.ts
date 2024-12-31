@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, model } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { User } from '../_models/user';
+import { ToastrService } from 'ngx-toastr';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toaster: ToastrService) { }
 
   login(model: any){
   return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
