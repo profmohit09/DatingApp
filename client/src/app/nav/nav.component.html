@@ -1,47 +1,59 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Dating App</a>
+    <a class="navbar-brand" routerLink="/">Dating App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- Navigation links for logged-in users -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="currentUsers$ | async">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Matches</a> 
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lists</a> 
+          <a routerLink="/members" routerLinkActive="active" class="nav-link" aria-current="page">Matches</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a> 
-        </li> 
+          <a routerLink="/lists" routerLinkActive="active" class="nav-link">Lists</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/messages" routerLinkActive="active" class="nav-link">Messages</a>
+        </li>
       </ul>
 
-      <!-- <div> -->
-        <div class="dropdown" *ngIf="currentUsers$ | async" dropdown> 
-        <a class="dropdown-toggle text-dark" dropdownToggle button id="button-basic" dropdownToggle type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Welcome User</a>
-          <div class="dropdown-menu" *dropdownMenu>
-            <a class="dropdown-item" >Edit Profile</a>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
-          </div>
+      <!-- Dropdown menu for logged-in users -->
+      <div class="dropdown" *ngIf="(currentUsers$ | async) as currentUser" dropdown>
+        <a 
+          class="dropdown-toggle text-dark btn btn-info dropdown-toggle-split" 
+          id="button-basic" 
+          dropdownToggle 
+          type="button" 
+          data-toggle="dropdown" 
+          aria-haspopup="true" 
+          aria-expanded="false">
+          Welcome {{ currentUser?.username }}
+        </a>
+        <div class="dropdown-menu" *dropdownMenu>
+          <a class="dropdown-item">Edit Profile</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
 
-        </div> 
-
-      <form *ngIf="!(currentUsers$ | async)"  #loginform="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off" >
+      <!-- Login form for guests -->
+      <form *ngIf="!(currentUsers$ | async)" #loginform="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
         <input
-        name="username"
-        [(ngModel)]="model.username"
-        class="form-control me-2"
-        type="search" 
-        placeholder="Username"  >
-        
+          name="username"
+          [(ngModel)]="model.username"
+          class="form-control me-2"
+          type="search" 
+          placeholder="Username">
         <input
-        name="password"
-        [(ngModel)]="model.password"
-         class="form-control me-2"
-        type="password"
-        placeholder="Password"  >
+          name="password"
+          [(ngModel)]="model.password"
+          class="form-control me-2"
+          type="password"
+          placeholder="Password">
         <button class="btn btn-outline-success" [disabled]="model.username == '' || model.password == ''" type="submit">Login</button>
       </form>
+
     </div>
   </div>
 </nav>

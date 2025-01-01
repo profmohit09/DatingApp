@@ -3,6 +3,7 @@ import { AccountService } from './_services/account.service';
 import { User } from './_models/user';
 
 @Component({
+ // standalone:true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
